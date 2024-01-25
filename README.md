@@ -1,4 +1,4 @@
-## To run locally 
+# To run locally 
 1. Run 
 `docker-compose up -d`
 
@@ -7,3 +7,6 @@
 If it cause error try to rerun it again. 
 
 3. Go to  `localhost:3001`
+
+# Run backend feature test
+`docker-compose exec backend php /var/www/html/artisan test`
