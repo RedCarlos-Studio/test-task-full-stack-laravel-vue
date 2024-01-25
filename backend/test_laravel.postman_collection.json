@@ -1,0 +1,337 @@
+{
+    "info": {
+        "_postman_id": "e0814828-b102-4de9-9189-3d5338855baf",
+        "name": "Test laravel",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "2625392",
+        "_collection_link": "https://grey-crater-103228.postman.co/workspace/Team-Workspace~8a7d818f-6fcc-4627-8368-3733bc39db08/collection/2625392-e0814828-b102-4de9-9189-3d5338855baf?action=share&source=collection_link&creator=2625392"
+    },
+    "item": [
+        {
+            "name": "Get tasks",
+            "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                    "accept": true
+                }
+            },
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{DOMAIN}}/api/tasks",
+                    "host": [
+                        "{{DOMAIN}}"
+                    ],
+                    "path": [
+                        "api",
+                        "tasks"
+                    ]
+                },
+                "description": "This method is for getting the list of all tasks with pagination."
+            },
+            "response": []
+        },
+        {
+            "name": "Get current task",
+            "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                    "accept": true
+                }
+            },
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{DOMAIN}}/api/tasks/4",
+                    "host": [
+                        "{{DOMAIN}}"
+                    ],
+                    "path": [
+                        "api",
+                        "tasks",
+                        "4"
+                    ]
+                },
+                "description": "This method is for get task by id.\n\nIn case if task was found, it return json StartFragment{ \"data\": { \"id\": 4, \"title\": \"Test 334\", \"description\": \"Test description 334\", \"is_completed\": true, \"created_at\": \"2024-01-22T14:53:42.000000Z\", \"status\": \"closed\" }}EndFragment with code 200.\n\nIn case if task was not found, it return json StartFragment{ \"message\": \"Task with ID 3 not found.\"}EndFragment with code 404."
+            },
+            "response": []
+        },
+        {
+            "name": "Create task",
+            "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                    "accept": true
+                }
+            },
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"title\":\"Test 4\",\r\n    \"description\":\"Description 4\",\r\n    \"is_completed\":1,\r\n    \"is_deleted\":0\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{DOMAIN}}/api/tasks",
+                    "host": [
+                        "{{DOMAIN}}"
+                    ],
+                    "path": [
+                        "api",
+                        "tasks"
+                    ]
+                },
+                "description": "This method is for create new task. Body parameters for it is {'title':'required|min:3|max:255', 'description':required|min:3|max:750', 'is_completed' => 'nullable|boolean', 'is_deleted' => 'nullable|boolean'\\].\n\nIn case if all parameters is valid, it return json StartFragment{ \"data\": { \"title\": \"Test title from postmaster\", \"description\": \"Test description from postmaster\", \"is_completed\": true, \"is_deleted\": true, \"created_at\": \"2024-01-23 15:00:51\", \"id\": 111 }}EndFragment with code 201.\n\nIn case if title not send, it return json StartFragment{ \"success\": false, \"message\": \"Validation errors\", \"data\": { \"title\": \\[ \"The title field is required.\" \\] }}EndFragment with code 422.\n\nIn case if title too long or too short, it return json StartFragment{\"success\":false,\"message\":\"Validation errors\",\"data\":{\"title\":\\[\"The title field must not be greater than 255 characters.\"\\]}}EndFragment with code 422.\n\nIn case if description not send, it return json StartFragment{ \"success\": false, \"message\": \"Validation errors\", \"data\": { \"description\": \\[ \"The description field is required.\" \\] }}EndFragment with code 422.\n\nIn case if description too long or too short, it return json StartFragment{ \"success\": false, \"message\": \"Validation errors\", \"data\": { \"description\": \\[ \"The description field must not be greater than 750 characters.\" \\] }}EndFragment with code 422.\n\nIn case if is_completed send in not boolean format, it return json StartFragment{ \"success\": false, \"message\": \"Validation errors\", \"data\": { \"is_completed\": \\[ \"The is completed field must be true or false.\" \\] }}EndFragment with code 422.\n\nIn case if is_deleted send in not boolean format, it return json StartFragment{ \"success\": false, \"message\": \"Validation errors\", \"data\": { \"is_deleted\": \\[ \"The is completed field must be true or false.\" \\] }}EndFragment with code 422."
+            },
+            "response": []
+        },
+        {
+            "name": "Update task",
+            "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                    "accept": true
+                }
+            },
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"title\":\"Test 4\",\r\n    \"description\":\"Description 4\",\r\n    \"is_completed\":1,\r\n    \"is_deleted\":0\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "{{DOMAIN}}/api/tasks/4",
+                    "host": [
+                        "{{DOMAIN}}"
+                    ],
+                    "path": [
+                        "api",
+                        "tasks",
+                        "4"
+                    ]
+                },
+                "description": "This method is for update existing task by id. Body parameters for it is {'title':'required|min:3|max:255', 'description':required|min:3|max:750', 'is_completed' => 'nullable|boolean', 'is_deleted' => 'nullable|boolean'\\].\n\nIn case if task was not found, it return json StartFragment{ \"message\": \"Task with ID 3 not found.\"}EndFragment with code 404.\n\nIn case if all parameters is valid, it return json StartFragment{ \"data\": { \"id\": 4, \"title\": \"Test 334\", \"description\": \"Test description 334\", \"is_completed\": false, \"created_at\": \"2024-01-22 14:53:42\", \"is_deleted\": true }}EndFragment with code 200.\n\nIn case if title not send, it return json StartFragment{ \"success\": false, \"message\": \"Validation errors\", \"data\": { \"title\": \\[ \"The title field is required.\" \\] }}EndFragment with code 422.\n\nIn case if title too long or too short, it return json StartFragment{\"success\":false,\"message\":\"Validation errors\",\"data\":{\"title\":\\[\"The title field must not be greater than 255 characters.\"\\]}}EndFragment with code 422.\n\nIn case if description not send, it return json StartFragment{ \"success\": false, \"message\": \"Validation errors\", \"data\": { \"description\": \\[ \"The description field is required.\" \\] }}EndFragment with code 422.\n\nIn case if description too long or too short, it return json StartFragment{ \"success\": false, \"message\": \"Validation errors\", \"data\": { \"description\": \\[ \"The description field must not be greater than 750 characters.\" \\] }}EndFragment with code 422.\n\nIn case if is_completed send in not boolean format, it return json StartFragment{ \"success\": false, \"message\": \"Validation errors\", \"data\": { \"is_completed\": \\[ \"The is completed field must be true or false.\" \\] }}EndFragment with code 422.\n\nIn case if is_deleted send in not boolean format, it return json StartFragment{ \"success\": false, \"message\": \"Validation errors\", \"data\": { \"is_deleted\": \\[ \"The is completed field must be true or false.\" \\] }}EndFragment with code 422."
+            },
+            "response": []
+        },
+        {
+            "name": "Delete task",
+            "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                    "accept": true
+                }
+            },
+            "request": {
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{DOMAIN}}/api/tasks/6",
+                    "host": [
+                        "{{DOMAIN}}"
+                    ],
+                    "path": [
+                        "api",
+                        "tasks",
+                        "6"
+                    ]
+                },
+                "description": "This method is for delete task by id.\n\nIn case if task was not found, it return json StartFragment{ \"message\": \"Task with ID 3 not found.\"}EndFragment with code 404.\n\nIn case if task deleted successfully, it return json null with code 204."
+            },
+            "response": []
+        },
+        {
+            "name": "Set task as completed",
+            "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                    "accept": true
+                }
+            },
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{DOMAIN}}/api/tasks/4/set-as-completed",
+                    "host": [
+                        "{{DOMAIN}}"
+                    ],
+                    "path": [
+                        "api",
+                        "tasks",
+                        "4",
+                        "set-as-completed"
+                    ]
+                },
+                "description": "This method for set task as completed by id.\n\nIn case if task is not found, it return json StartFragment{ \"message\": \"Task with ID 3 not found.\"}EndFragment with code 404.\n\nIn case if task is found, it return json StartFragment{    \"message\": \"Task with id 4 is completed\"}EndFragment with code 200."
+            },
+            "response": []
+        },
+        {
+            "name": "Set task as open",
+            "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                    "accept": true
+                }
+            },
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{DOMAIN}}/api/tasks/4/set-as-open",
+                    "host": [
+                        "{{DOMAIN}}"
+                    ],
+                    "path": [
+                        "api",
+                        "tasks",
+                        "4",
+                        "set-as-open"
+                    ]
+                },
+                "description": "This method for set task as open by id.\n\nIn case if task is not found, it return json StartFragment{ \"message\": \"Task with ID 3 not found.\"}EndFragment with code 404.\n\nIn case if task is found, it return json StartFragment{ \"message\": \"Task with id 4 is open\"}EndFragment with code 200."
+            },
+            "response": []
+        },
+        {
+            "name": "Set as deleted",
+            "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                    "accept": true
+                }
+            },
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{DOMAIN}}/api/tasks/4/set-as-deleted",
+                    "host": [
+                        "{{DOMAIN}}"
+                    ],
+                    "path": [
+                        "api",
+                        "tasks",
+                        "4",
+                        "set-as-deleted"
+                    ]
+                },
+                "description": "This method for set task as deleted by id.\n\nIn case if task is not found, it return json StartFragment{ \"message\": \"Task with ID 3 not found.\"}EndFragment with code 404.\n\nIn case if task is found, it return json StartFragment{ \"message\": \"Task with id 4 is deleted\"}EndFragment with code 200."
+            },
+            "response": []
+        },
+        {
+            "name": "Set as not deleted",
+            "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                    "accept": true
+                }
+            },
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Accept",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{DOMAIN}}/api/tasks/4/set-as-not-deleted",
+                    "host": [
+                        "{{DOMAIN}}"
+                    ],
+                    "path": [
+                        "api",
+                        "tasks",
+                        "4",
+                        "set-as-not-deleted"
+                    ]
+                },
+                "description": "This method for set task as not deleted by id.\n\nIn case if task is not found, it return json StartFragment{ \"message\": \"Task with ID 3 not found.\"}EndFragment with code 404.\n\nIn case if task is found, it return json StartFragment{ \"message\": \"Task with id 4 is not deleted\"}EndFragment with code 200."
+            },
+            "response": []
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "DOMAIN",
+            "value": "",
+            "type": "string"
+        }
+    ]
+}
